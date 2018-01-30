@@ -53,25 +53,25 @@ public class Frequencer implements FrequencerInterface{
     }
 
     public void setSpace(byte []space) {
-	mySpace = space; if (mySpace.length>0) spaceReady = true;
-	suffixArray = new int[space.length];
-	for(int i = 0; i < space.length; i++){
-	    suffixArray[i] = i;
-	}
+        mySpace = space; if (mySpace.length>0) spaceReady = true;
+        suffixArray = new int[space.length];
+        for(int i = 0; i < space.length; i++){
+            suffixArray[i] = i;
+        }
 	
-	//sort
-	int count = 0;
-        for (int i = 0; i < suffixArray.length - 1; i++) {
-            for (int j = suffixArray.length - 1; j > i; j--) {
-		if(suffixCompare(j-1,j) == 1) {
-                    int tmpNum = suffixArray[j - 1];
-                    suffixArray[j - 1] = suffixArray[j];
-                    suffixArray[j] = tmpNum;
-                    count++;
+        //sort
+        int count = 0;
+            for (int i = 0; i < suffixArray.length - 1; i++) {
+                for (int j = suffixArray.length - 1; j > i; j--) {
+            if(suffixCompare(j-1,j) == 1) {
+                        int tmpNum = suffixArray[j - 1];
+                        suffixArray[j - 1] = suffixArray[j];
+                        suffixArray[j] = tmpNum;
+                        count++;
+                    }
                 }
             }
-        }
-	printSuffixArray();
+        printSuffixArray();
     }
 
     private int targetCompare(int i, int start, int end){
@@ -118,8 +118,8 @@ public class Frequencer implements FrequencerInterface{
 	int last1 = subByteEndIndex(start,end);
      
 	//debug
-	for(int k = start; k < end; k++) {System.out.write(myTarget[k]);}
-	System.out.printf(" : first = %d last1 = %d \n", first, last1);
+	/*for(int k = start; k < end; k++) {System.out.write(myTarget[k]);}
+	System.out.printf(" : first = %d last1 = %d \n", first, last1);*/
 	
 	return last1-first;
     }
