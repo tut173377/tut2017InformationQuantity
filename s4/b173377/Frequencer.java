@@ -53,12 +53,11 @@ public class Frequencer implements FrequencerInterface{
     }
 
     public void setSpace(byte []space) {
-	mySpace = space; if (mySpace.length>0) spaceReady = true;
-	suffixArray = new int[space.length];
-	for(int i = 0; i < space.length; i++){
-	    suffixArray[i] = i;
-	}
-	
+        mySpace = space; if (mySpace.length>0) spaceReady = true;
+        suffixArray = new int[space.length];
+        for(int i = 0; i < space.length; i++){
+            suffixArray[i] = i;
+        }
 	//sort
         quicksort(0, suffixArray.length - 1);
 //	int count = 0;
@@ -95,8 +94,8 @@ public class Frequencer implements FrequencerInterface{
             quicksort(low, h);
         if(l < high)
             quicksort(l, high);
-        
     }
+        
     
     private int targetCompare(int i, int start, int end){
         //siは”HI Ho Hi Ho”の開始位置を記憶
@@ -163,8 +162,8 @@ public class Frequencer implements FrequencerInterface{
 	int last1 = subByteEndIndex(start,end);
      
 	//debug
-	for(int k = start; k < end; k++) {System.out.write(myTarget[k]);}
-	System.out.printf(" : first = %d last1 = %d \n", first, last1);
+	/*for(int k = start; k < end; k++) {System.out.write(myTarget[k]);}
+	System.out.printf(" : first = %d last1 = %d \n", first, last1);*/
 	
 	return last1-first;
     }
