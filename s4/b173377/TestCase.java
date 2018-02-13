@@ -32,8 +32,8 @@ public interface InformationEstimatorInterface{
 public class TestCase {
     public static void main(String[] args) {
 	try {
-	    FrequencerInterface  myObject,myObject2,myObject3,myObject4,myObject5,myObject6;
-	    int freq,freq2,freq3,freq4,freq5,freq6;
+        FrequencerInterface  myObject;
+        int freq;
 	    System.out.println("checking s4.b173377.Frequencer");
 	    
         System.out.println("returns frequency of H in hi ho hi ho ");
@@ -42,50 +42,85 @@ public class TestCase {
         myObject.setTarget("H".getBytes());
         freq = myObject.frequency();
         System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
-        if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
-        
+        if(4 == freq) { System.out.println("OK\n"); } else {System.out.println("WRONG"); }
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP");
+    }
+    try{
+        FrequencerInterface  myObject2;
+        int freq2;
+        System.out.println("checking when target is not set");
         myObject2 = new s4.b173377.Frequencer(); //returns -1 when Target is not set
         myObject2.setSpace("Hi Ho Hi Ho".getBytes());
         //myObject2.setTarget("".getBytes());
         freq2 = myObject2.frequency();
-        System.out.println("\"a\" in \"Hi Ho Hi Ho\" appears "+freq2+" times. ");
-        if(-1 == freq2) { System.out.println("returns -1 when target is not set"); } else {System.out.println("WRONG"); }
-        
+        System.out.println("Appears "+freq2+" times. ");
+        if(-1 == freq2) { System.out.println("returns -1 when target is not set\n"); } else {System.out.println("WRONG"); }
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP");
+    }
+    try{
+        FrequencerInterface  myObject3;
+        int freq3;
+        System.out.println("checking when target length is 0");
         myObject3 = new s4.b173377.Frequencer(); //returns -1 when Target's length is 0
         myObject3.setSpace("Hi Ho Hi Ho".getBytes());
         myObject3.setTarget(null);
         freq3 = myObject3.frequency();
-        System.out.println("\" \" in \"Hi Ho Hi Ho\" appears "+freq3+" times. ");
-        if(-1 == freq3) { System.out.println("returns -1 when target's length is 0"); } else {System.out.println("WRONG"); }
-        
+        System.out.println("Appears "+freq3+" times. ");
+        if(-1 == freq3) { System.out.println("returns -1 when target's length is 0\n"); } else {System.out.println("WRONG"); }
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP");
+    }
+    try{
+        FrequencerInterface  myObject4;
+        int freq4;
+        System.out.println("checking when space is not set");
         myObject4 = new s4.b173377.Frequencer(); //returns 0 when Space is not set
         //myObject4.setSpace("".getBytes());
         myObject4.setTarget("H".getBytes());
         freq4 = myObject4.frequency();
-        System.out.println("\"\" in \"Hi Ho Hi Ho\" appears "+freq4+" times. ");
-        if(0 == freq4) { System.out.println("returns 0 when space is not set"); } else {System.out.println("WRONG"); }
-        
+        System.out.println("Appears "+freq4+" times. ");
+        if(0 == freq4) { System.out.println("returns 0 when space is not set\n"); } else {System.out.println("WRONG"); }
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP");
+    }
+    try{
+        FrequencerInterface  myObject5;
+        int freq5;
+        System.out.println("checking when space length is 0");
         myObject5 = new s4.b173377.Frequencer(); //returns 0 when Space's length is 0
         myObject5.setSpace(null);
         myObject5.setTarget("H".getBytes());
         freq5 = myObject5.frequency();
-        System.out.println("\"\" in \"Hi Ho Hi Ho\" appears "+freq5+" times. ");
-        if(0 == freq5) { System.out.println("returns 0 when Space's length is 0"); } else {System.out.println("WRONG"); }
-
+        System.out.println("Appears "+freq5+" times. ");
+        if(0 == freq5) { System.out.println("returns 0 when Space's length is 0\n"); } else {System.out.println("WRONG"); }
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP");
+    }
+    try{
+        FrequencerInterface  myObject6;
+        int freq6;
+        System.out.println("checking when target is not available");
         myObject6 = new s4.b173377.Frequencer(); //returns frequency of a
         myObject6.setSpace("Hi Ho Hi Ho".getBytes());
         myObject6.setTarget("a".getBytes());
         freq6 = myObject6.frequency();
         System.out.println("\"a \" in \"Hi Ho Hi Ho\" appears "+freq6+" times. ");
-        if(0 == freq6) { System.out.println("returns frequency of a in hi ho hi ho "); } else {System.out.println("WRONG"); }
+        if(0 == freq6) { System.out.println("returns frequency of a in hi ho hi ho \n"); } else {System.out.println("WRONG"); }
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
 	}
 
 	try {
-	    InformationEstimatorInterface myObject,myObject2,myObject3,myObject4,myObject5,myObject6;
-	    double value,value2,value3,value4,value5,value6;
+        InformationEstimatorInterface myObject;
+        double value;
         double inf = Double.POSITIVE_INFINITY;
 	    System.out.println("checking s4.b173377.InformationEstimator");
 	    
@@ -108,41 +143,81 @@ public class TestCase {
         myObject.setTarget("00".getBytes());
         value = myObject.estimation();
         System.out.println(">00 "+value);
-
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP");
+    }
+    try{
+        InformationEstimatorInterface myObject2;
+        double value2;
+        double inf = Double.POSITIVE_INFINITY;
+        System.out.println("Returns estimation of information quantity when target is not set ");
         myObject2 = new s4.b173377.InformationEstimator(); //returns 0 when target not set
         myObject2.setSpace("3210321001230123".getBytes());
         //myObject2.setTarget("1".getBytes());
         value2 = myObject2.estimation();
-        System.out.println(">1 "+value2);
-        if(0 == value2) { System.out.println("returns 0 when target not set "); } else {System.out.println("WRONG"); }
-        
+        System.out.println("> "+value2);
+        if(0 == value2) { System.out.println("returns 0 when target not set \n"); } else {System.out.println("WRONG"); }
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP");
+    }
+    try{
+        InformationEstimatorInterface myObject3;
+        double value3;
+        double inf = Double.POSITIVE_INFINITY;
+        System.out.println("Returns estimation of information quantity when target length = 0 ");
         myObject3 = new s4.b173377.InformationEstimator(); //returns 0 when target not set
         myObject3.setSpace("3210321001230123".getBytes());
-        myObject3.setTarget("".getBytes());
+        myObject3.setTarget(null);
         value3 = myObject3.estimation();
-        System.out.println(">1 "+value3);
-        if(0 == value3) { System.out.println("returns target's length is 0 "); } else {System.out.println("WRONG"); }
-
+        System.out.println("> "+value3);
+        if(0 == value3) { System.out.println("returns target's length is 0 \n"); } else {System.out.println("WRONG"); }
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP");
+    }
+    try{
+        InformationEstimatorInterface myObject4;
+        double value4;
+        double inf = Double.POSITIVE_INFINITY;
+        System.out.println("Returns estimation of information quantity when space is not set");
         myObject4 = new s4.b173377.InformationEstimator(); //returns double.max_value when space not set
         //myObject4.setSpace("3210321001230123".getBytes());
         myObject4.setTarget("2".getBytes());
         value4 = myObject4.estimation();
-        System.out.println(">2 "+value4);
-        if(Double.MAX_VALUE == value4) { System.out.println("returns Double max value when space not set "); } else {System.out.println("WRONG"); }
-        
-        myObject5 = new s4.b173377.InformationEstimator(); //returns double.max_value when space not set
-        myObject5.setSpace("qwertyuioasdfghzxcghjasgdnqwbndcxkzjbcnmqwebhjagxzbcnmq bsjxbcjkmnbsdqvsajhdgvhjwavenqsavbdnqbwvebdnsavdbnavsdn asdasdadqwsacdqw".getBytes());
+        System.out.println("> "+value4);
+        if(Double.MAX_VALUE == value4) { System.out.println("returns Double max value when space not set \n"); } else {System.out.println("WRONG"); }
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP");
+    }
+    try{
+        InformationEstimatorInterface myObject5;
+        double value5;
+        double inf = Double.POSITIVE_INFINITY;
+        System.out.println("Returns estimation of information quantity when space is infinite ");
+        myObject5 = new s4.b173377.InformationEstimator(); //returns double.max_value when space is infinite
+        myObject5.setSpace("qwertyuioasdfghzxcghjasgdnqwbndcxkzjbcnmqwebhjagxzbcnmq bsjxbcjkmnbsdqvsajhdgvhjwavenqsavbdnqbwvebdnsavdbnavsdnasdasdasdadqwsacdqw".getBytes());
         myObject5.setTarget("2".getBytes());
         value5 = myObject5.estimation();
-        System.out.println(">2 "+value5);
-        if(Double.MAX_VALUE == value5) { System.out.println("returns Double max value when space is infinite "); } else {System.out.println("WRONG"); }
-        
+        System.out.println("> "+value5);
+        if(Double.MAX_VALUE == value5) { System.out.println("returns Double max value when space is infinite \n"); } else {System.out.println("WRONG"); }
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP");
+    }
+    try{
+        InformationEstimatorInterface myObject6;
+        double value6;
+        double inf = Double.POSITIVE_INFINITY;
+        System.out.println("Returns estimation of information quantity when target is not available ");
         myObject6 = new s4.b173377.InformationEstimator(); //returns estimation of information quantity
         myObject6.setSpace("3210321001230123".getBytes());
         myObject6.setTarget("4".getBytes());
         value6 = myObject6.estimation();
         System.out.println(">4 "+value6);
-        if(0 == value6) { System.out.println("Returns estimation of information quantity "); } else {System.out.println("WRONG"); }
+        if(Double.MAX_VALUE == value6) { System.out.println("Returns estimation of information quantity (infinite)\n"); } else {System.out.println("WRONG"); }
         
 	}
 	catch(Exception e) {

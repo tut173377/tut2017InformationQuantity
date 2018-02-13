@@ -53,13 +53,14 @@ public class Frequencer implements FrequencerInterface{
     }
 
     public void setSpace(byte []space) {
-        mySpace = space; if (mySpace.length>0) spaceReady = true;
-        suffixArray = new int[space.length];
-        for(int i = 0; i < space.length; i++){
-            suffixArray[i] = i;
-        }
+        if (space != null){
+            mySpace = space; if (mySpace.length>0) spaceReady = true;
+            suffixArray = new int[space.length];
+            for(int i = 0; i < space.length; i++){
+                suffixArray[i] = i;
+            }
 	//sort
-        quicksort(0, suffixArray.length - 1);
+            quicksort(0, suffixArray.length - 1);
 //	int count = 0;
 //        for (int i = 0; i < suffixArray.length - 1; i++) {
 //            for (int j = suffixArray.length - 1; j > i; j--) {
@@ -71,7 +72,8 @@ public class Frequencer implements FrequencerInterface{
 //                }
 //            }
 //        }
-	printSuffixArray();
+//	printSuffixArray();
+        }
     }
     
     private void quicksort(int low, int high){
@@ -115,8 +117,8 @@ public class Frequencer implements FrequencerInterface{
         int high = mySpace.length-1;
         while (low <= high){
             int mid = (high + low) / 2;
-            if (targetCompare(mid, start, end) == 1) high = mid - 1;
-            else if(targetCompare(mid, start, end) == -1) low = mid + 1;
+            if(targetCompare(mid, start, end) == -1) low = mid + 1;
+            else if (targetCompare(mid, start, end) == 1) high = mid - 1;
             else return mid;
         }
         return -1;
@@ -128,11 +130,11 @@ public class Frequencer implements FrequencerInterface{
 //            if (targetCompare(i,start,end) == 0) return i;
 //        }
         int index = BinarySearchTree(start, end);
-        if(index == -1)  return 0;
         for (int i = index; i >= 0; i--){
             if (targetCompare(i,start,end) == -1) return i+1;
+            if (i==0) return 0; //Startと同じ場合
         }
-    return 0;
+    return suffixArray.length;
     }
 
     private int subByteEndIndex(int start, int end){
@@ -141,11 +143,12 @@ public class Frequencer implements FrequencerInterface{
 //            if (targetCompare(i,start,end) == 0 ) return i+1;
 //        }
         int index = BinarySearchTree(start, end);
-        if(index == -1)  return 0;
-        for (int i = index; i < mySpace.length ; i++){
-            if (targetCompare(i,start,end) == 1) return i;
+        if(index != -1){ //例外の場合はtarget.lengthを返す
+            for (int i = index; i < mySpace.length ; i++){
+                if (targetCompare(i,start,end) == 1) return i;
+            }
         }
-	return 0;
+	return suffixArray.length;
     }
 
     public int subByteFrequency(int start, int end){
@@ -160,6 +163,7 @@ public class Frequencer implements FrequencerInterface{
 	}
 	int first = subByteStartIndex(start,end);
 	int last1 = subByteEndIndex(start,end);
+        
      
 	//debug
 	/*for(int k = start; k < end; k++) {System.out.write(myTarget[k]);}
@@ -169,8 +173,10 @@ public class Frequencer implements FrequencerInterface{
     }
 
     public void setTarget(byte [] target) {
-	myTarget = target;
-	if(myTarget.length > 0) targetReady = true;
+        if (target != null){
+            myTarget = target;
+            if(myTarget.length > 0) targetReady = true;
+        }
     }
 
     public int frequency() {
@@ -183,8 +189,8 @@ public class Frequencer implements FrequencerInterface{
 	Frequencer frequencerObject;
 	try {
 	    frequencerObject = new Frequencer();
-    frequencerObject.setSpace("mavngmpuaocyhvmbgdsvyeqoisfmslazqrphujrzaweaegttuukhwessbfhngzaqmdpsshxpynespxoyuuymgwlobjioluxxccbp".getBytes());
-	    frequencerObject.setTarget("yhvmbgdsvy".getBytes());
+        frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
+	    frequencerObject.setTarget("a".getBytes());
 	    int result = frequencerObject.frequency();
 	    System.out.println("Freq = "+result+" ");
 	    
