@@ -106,8 +106,10 @@ public class Frequencer implements FrequencerInterface{
         //if(tse > mySpace.length - si) return -1;
         int n = tse;
         for(int	k = 0; k < n; k++){
-            if(mySpace[si+k] > myTarget[start+k]) return 1;
-            if(mySpace[si+k] < myTarget[start+k]) return -1;
+            if(si+k <= mySpace.length - 1){
+                if(mySpace[si+k] > myTarget[start+k]) return 1;
+                if(mySpace[si+k] < myTarget[start+k]) return -1;
+            }else {return -1;}
         }
 	return 0;
     }
@@ -193,7 +195,7 @@ public class Frequencer implements FrequencerInterface{
 	try {
 	    frequencerObject = new Frequencer();
         frequencerObject.setSpace("3210321001230123".getBytes());
-	    frequencerObject.setTarget("23".getBytes());
+	    frequencerObject.setTarget("210012".getBytes());
 	    int result = frequencerObject.frequency();
 	    System.out.println("Freq = "+result+" ");
 	    

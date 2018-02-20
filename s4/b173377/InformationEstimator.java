@@ -142,6 +142,9 @@ public class InformationEstimator implements InformationEstimatorInterface{
 	myObject.setTarget("00".getBytes());
 	value = myObject.estimation();
 	System.out.println(">00 "+value);
+    myObject.setTarget("".getBytes());
+    value = myObject.estimation();
+    System.out.println("> "+value);
     }
 }
 				  
