@@ -196,13 +196,13 @@ public class TestCase {
         InformationEstimatorInterface myObject5;
         double value5;
         double inf = Double.POSITIVE_INFINITY;
-        System.out.println("Returns estimation of information quantity when space is infinite ");
-        myObject5 = new s4.b173377.InformationEstimator(); //returns double.max_value when space is infinite
-        myObject5.setSpace("qwertyuioasdfghzxcghjasgdnqwbndcxkzjbcnmqwebhjagxzbcnmq bsjxbcjkmnbsdqvsajhdgvhjwavenqsavbdnqbwvebdnsavdbnavsdnasdasdasdadqwsacdqw".getBytes());
+        System.out.println("Returns estimation of information quantity when space is 0");
+        myObject5 = new s4.b173377.InformationEstimator(); //returns double.max_value when space is 0
+        myObject5.setSpace(null);
         myObject5.setTarget("2".getBytes());
         value5 = myObject5.estimation();
         System.out.println("> "+value5);
-        if(Double.MAX_VALUE == value5) { System.out.println("returns Double max value when space is infinite \n"); } else {System.out.println("WRONG"); }
+        if(Double.MAX_VALUE == value5) { System.out.println("returns Double max value when space not set \n"); } else {System.out.println("WRONG"); }
     }
     catch(Exception e) {
         System.out.println("Exception occurred: STOP");
@@ -211,13 +211,28 @@ public class TestCase {
         InformationEstimatorInterface myObject6;
         double value6;
         double inf = Double.POSITIVE_INFINITY;
-        System.out.println("Returns estimation of information quantity when target is not available ");
-        myObject6 = new s4.b173377.InformationEstimator(); //returns estimation of information quantity
-        myObject6.setSpace("3210321001230123".getBytes());
-        myObject6.setTarget("4".getBytes());
+        System.out.println("Returns estimation of information quantity when space is infinite ");
+        myObject6 = new s4.b173377.InformationEstimator(); //returns double.max_value when space is infinite
+        myObject6.setSpace("qwertyuioasdfghzxcghjasgdnqwbndcxkzjbcnmqwebhjagxzbcnmq bsjxbcjkmnbsdqvsajhdgvhjwavenqsavbdnqbwvebdnsavdbnavsdnasdasdasdadqwsacdqw".getBytes());
+        myObject6.setTarget("2".getBytes());
         value6 = myObject6.estimation();
-        System.out.println(">4 "+value6);
-        if(Double.MAX_VALUE == value6) { System.out.println("Returns estimation of information quantity (infinite)\n"); } else {System.out.println("WRONG"); }
+        System.out.println("> "+value6);
+        if(Double.MAX_VALUE == value6) { System.out.println("returns Double max value when space is infinite \n"); } else {System.out.println("WRONG"); }
+    }
+    catch(Exception e) {
+        System.out.println("Exception occurred: STOP");
+    }
+    try{
+        InformationEstimatorInterface myObject7;
+        double value7;
+        double inf = Double.POSITIVE_INFINITY;
+        System.out.println("Returns estimation of information quantity when target is not available ");
+        myObject7 = new s4.b173377.InformationEstimator(); //returns estimation of information quantity
+        myObject7.setSpace("3210321001230123".getBytes());
+        myObject7.setTarget("4".getBytes());
+        value7 = myObject7.estimation();
+        System.out.println(">4 "+value7);
+        if(Double.MAX_VALUE == value7) { System.out.println("Returns estimation of information quantity (infinite)\n"); } else {System.out.println("WRONG"); }
         
 	}
 	catch(Exception e) {

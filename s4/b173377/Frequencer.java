@@ -103,7 +103,7 @@ public class Frequencer implements FrequencerInterface{
         //siは”HI Ho Hi Ho”の開始位置を記憶
         int si = suffixArray[i];
         int tse = end - start;
-        if(tse > mySpace.length - si) return -1;
+        //if(tse > mySpace.length - si) return -1;
         int n = tse;
         for(int	k = 0; k < n; k++){
             if(mySpace[si+k] > myTarget[start+k]) return 1;
@@ -131,6 +131,7 @@ public class Frequencer implements FrequencerInterface{
 //        }
         int index = BinarySearchTree(start, end);
         for (int i = index; i >= 0; i--){
+           // System.out.printf("%d\n",targetCompare(i,start,end));
             if (targetCompare(i,start,end) == -1) return i+1;
             if (i==0) return 0; //Startと同じ場合
         }
@@ -144,7 +145,9 @@ public class Frequencer implements FrequencerInterface{
 //        }
         int index = BinarySearchTree(start, end);
         if(index != -1){ //例外の場合はtarget.lengthを返す
+            //System.out.printf("index = %d\n",index);
             for (int i = index; i < mySpace.length ; i++){
+                //System.out.printf("%d\n",targetCompare(i,start,end));
                 if (targetCompare(i,start,end) == 1) return i;
             }
         }
@@ -167,8 +170,8 @@ public class Frequencer implements FrequencerInterface{
      
 	//debug
 	/*for(int k = start; k < end; k++) {System.out.write(myTarget[k]);}
-	System.out.printf(" : first = %d last1 = %d \n", first, last1);*/
-	
+	System.out.printf(" : first = %d last1 = %d \n", first, last1);
+	*/
 	return last1-first;
     }
 
@@ -189,8 +192,8 @@ public class Frequencer implements FrequencerInterface{
 	Frequencer frequencerObject;
 	try {
 	    frequencerObject = new Frequencer();
-        frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
-	    frequencerObject.setTarget("a".getBytes());
+        frequencerObject.setSpace("3210321001230123".getBytes());
+	    frequencerObject.setTarget("23".getBytes());
 	    int result = frequencerObject.frequency();
 	    System.out.println("Freq = "+result+" ");
 	    
